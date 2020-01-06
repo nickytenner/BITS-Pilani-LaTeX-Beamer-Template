@@ -1,0 +1,76 @@
+% Copyright 2020 by Eldhose Iype, BITS Dubai
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\ProvidesPackageRCS $Header: /Users/joseph/Documents/LaTeX/beamer/base/themes/inner/beamerinnerthemerounded.sty,v d02a7cf4d8ae 2010/06/17 09:11:41 rivanvx $
+
+
+\DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+\ExecuteOptionsBeamer{shadow=false}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\setbeamertemplate{background}{
+\begin{tikzpicture}
+\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+%\ifnum\thepage<2
+\ifnum\value{page}=1
+\includegraphics[width=\the\paperwidth,height=\the\paperheight]{title_bg_hyderabad.png}
+\fi
+%\ifnum\value{page}=2
+%\includegraphics[width=\the\paperwidth,height=\the\paperheight]{title2_bg_pilani.png}
+%\fi
+\ifnum\value{page}>1
+\fill[color=orange] (0,\the\paperheight) rectangle (3,8.55);
+\fill[color=cyan] (3,\the\paperheight) rectangle (6,8.55);
+\fill[color=red] (6,\the\paperheight) rectangle (9,8.55);
+\fi
+\ifnum\value{page}>1
+\fill[color=orange] (5,0.63) rectangle (8,0.7);
+\fill[color=cyan] (8,0.63) rectangle (11,0.7);
+\fill[color=red] (11,0.63) rectangle (\the\paperwidth,0.7);
+\fi
+\end{tikzpicture}
+}
+
+\setbeamertemplate{blocks}[rounded][shadow=\beamer@themerounded@shadow]
+\setbeamertemplate{items}[ball]
+\setbeamertemplate{sections/subsections in toc}[ball]
+
+\setbeamertemplate{title page}{%
+\ifnum\value{page}=1
+ \vskip4cm%
+    \begin{beamercolorbox}[leftskip=2cm,sep=1cm]{title page header}
+      \usebeamerfont{title}{\Huge \inserttitle}\par%
+    \end{beamercolorbox}%
+    \vskip-1.0cm%
+    \begin{beamercolorbox}[leftskip=3cm]{author}
+     \usebeamerfont{author}{\insertauthor}%
+    \end{beamercolorbox}
+    \vskip0.0cm%
+    \begin{beamercolorbox}[leftskip=9cm]{date}
+     \usebeamerfont{author}\insertdate%
+   \end{beamercolorbox}
+   \fi
+   %\ifnum\value{page}=2
+    %\vskip5cm%
+    %\begin{beamercolorbox}[leftskip=2cm,sep=1cm]{title page header}
+     % \usebeamerfont{title}{
+      %\begin{center}
+       %     {\color{darkred} {\bfseries \insertsubtitle}}\par%
+      %\end{center}}
+   % \end{beamercolorbox}%
+   %\fi
+}
+
+
+\setbeamertemplate{part page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+  
+\mode<all>
